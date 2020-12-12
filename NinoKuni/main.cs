@@ -20,10 +20,15 @@ namespace NinoKuni
         private static GCHandle handle;
         Image imgOriginal;
 
+        Dictionary<byte[], long[]> dic = new Dictionary<byte[], long[]>();
+
         Rectangle rect;
 
-        Point LocationXlYt;
-        Point LocationXrYb;
+        Point LocationXlYt = new Point(409, 78);
+        Point LocationXrYb = new Point(436, 156);
+
+        public byte[] all = null;
+        public byte[] somecolor = null;
 
         public main()
         {
@@ -77,6 +82,7 @@ namespace NinoKuni
                             if (width * height * 4 == data_raw.Length)
                             {
                                 typeF.Text = "Texture (RGBA8)";
+                                IsRGBA();
                                 byte[] done = new byte[head.Length + 12 + argb.Length + data_raw.Length];
                                 Buffer.BlockCopy(head, 0, done, 0, head.Length);
                                 Buffer.BlockCopy(BitConverter.GetBytes(height), 0, done, head.Length, 4);
@@ -84,11 +90,13 @@ namespace NinoKuni
                                 Buffer.BlockCopy(BitConverter.GetBytes(data_raw.Length), 0, done, head.Length + 8, 4);
                                 Buffer.BlockCopy(argb, 0, done, head.Length + 12, argb.Length);
                                 Buffer.BlockCopy(data_raw, 0, done, head.Length + 12 + argb.Length, data_raw.Length);
+                                all = done;
                                 TexDDS(done);
                             }
                             else
                             {
                                 typeF.Text = "Texture (BC7)";
+                                NotRGBA();
                                 byte[] done = new byte[head.Length + 12 + bc7.Length + data_raw.Length];
                                 Buffer.BlockCopy(head, 0, done, 0, head.Length);
                                 Buffer.BlockCopy(BitConverter.GetBytes(height), 0, done, head.Length, 4);
@@ -96,6 +104,7 @@ namespace NinoKuni
                                 Buffer.BlockCopy(BitConverter.GetBytes(data_raw.Length), 0, done, head.Length + 8, 4);
                                 Buffer.BlockCopy(bc7, 0, done, head.Length + 12, bc7.Length);
                                 Buffer.BlockCopy(data_raw, 0, done, head.Length + 12 + bc7.Length, data_raw.Length);
+                                all = done;
                                 TexDDS(done);
                             }
 
@@ -103,6 +112,39 @@ namespace NinoKuni
                         else
                         {
                             MessageBox.Show("No p3igg file found!");
+                        }
+
+                        if (cfg)
+                        {
+                            WithMap();
+                            rdcfg.BaseStream.Seek(32, SeekOrigin.Begin);
+                            long count = rdcfg.ReadInt64();
+                            rdcfg.ReadInt64(); //width
+                            rdcfg.ReadInt64();//height
+                            rdcfg.ReadInt64();//file_cound
+                            for(int i = 0; i < count; i++)
+                            {
+                                long[] lsInf = new long[5];
+                                rdcfg.ReadBytes(16);//sth
+                                byte[] id = rdcfg.ReadBytes(8);
+                                lsInf[0] = rdcfg.ReadInt64();//block_x
+                                lsInf[1] = rdcfg.ReadInt64();//block_y
+                                lsInf[2] = rdcfg.ReadInt64();//width
+                                lsInf[3] = rdcfg.ReadInt64();//adv_left
+                                lsInf[4] = rdcfg.ReadInt64();//adv_right
+                                rdcfg.ReadInt64();
+                                dic.Add(id, lsInf);
+                            }
+                            foreach (var pair in dic)
+                            {
+                                byte[] showchar = Decore(pair.Key);
+                                Array.Reverse(showchar);
+                                listID.Items.Add(Encoding.UTF8.GetString(showchar));
+                            }
+                        }
+                        else
+                        {
+                            NoneMap();
                         }
                         
                     }
@@ -117,6 +159,18 @@ namespace NinoKuni
 
                 }
             }
+        }
+
+        private byte[] Decore(byte[] input)
+        {
+            var i = input.Length - 1;
+            while(input[i] == 0)
+            {
+                --i;
+            }
+            var output = new byte[i + 1];
+            Array.Copy(input, output, i + 1);
+            return output;
         }
 
         public void TexDDS(byte[] data)
@@ -223,7 +277,8 @@ namespace NinoKuni
         {
             if(rect != null)
             {
-                e.Graphics.DrawRectangle(Pens.Red, GetRect());
+                e.Graphics.DrawRectangle(Pens.White, GetRect());
+                //e.Graphics.DrawLine(P)
             }
         }
 
@@ -235,6 +290,200 @@ namespace NinoKuni
             rect.Width = Math.Abs(LocationXlYt.X - LocationXrYb.X);
             rect.Height = Math.Abs(LocationXlYt.Y - LocationXrYb.Y);
             return rect;
+        }
+
+        private void aboutMeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Sol\n\nDiscord: https://discord.gg/GVQnYb6c5X", "About!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private byte[] ResRGBA(bool R, bool G, bool B, bool A, byte[] data)
+        {
+            byte[] buffer = new byte[data.Length];
+            Buffer.BlockCopy(data, 0, buffer, 0, data.Length);
+            BinaryWriter wtms = new BinaryWriter(new MemoryStream(buffer));
+            wtms.BaseStream.Seek(128, SeekOrigin.Begin);
+            for(int i = 0; i < (buffer.Length - 128)/4; i++)
+            {
+                if (R)
+                    wtms.BaseStream.Seek(1, SeekOrigin.Current);
+                else
+                    wtms.Write((byte)0);
+
+                if (G)
+                    wtms.BaseStream.Seek(1, SeekOrigin.Current);
+                else
+                    wtms.Write((byte)0);
+
+                if (B)
+                    wtms.BaseStream.Seek(1, SeekOrigin.Current);
+                else
+                    wtms.Write((byte)0);
+
+                if (A)
+                    wtms.BaseStream.Seek(1, SeekOrigin.Current);
+                else
+                    wtms.Write((byte)0xFF);
+            }
+            somecolor = buffer;
+            return buffer;
+        }
+
+        public void RGBChange()
+        {
+            if (ckR.Checked && ckG.Checked && ckB.Checked && ckA.Checked)
+            {
+                TexDDS(all);
+            }
+            else if ((!ckR.Checked && !ckG.Checked && !ckB.Checked && ckA.Checked) || (!ckR.Checked && !ckG.Checked && !ckB.Checked && !ckA.Checked))
+            {
+                MessageBox.Show("Please checked R or G or B channel, no data result!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                TexDDS(ResRGBA(ckR.Checked, ckG.Checked, ckB.Checked, ckA.Checked, all));
+            }
+        }
+
+        #region RGBchange
+
+        private void ckR_CheckedChanged(object sender, EventArgs e)
+        {
+            RGBChange();
+        }
+
+        private void ckG_CheckedChanged(object sender, EventArgs e)
+        {
+            RGBChange();
+        }
+
+        private void ckB_CheckedChanged(object sender, EventArgs e)
+        {
+            RGBChange();
+        }
+
+        private void ckA_CheckedChanged(object sender, EventArgs e)
+        {
+            RGBChange();
+        }
+
+        #endregion
+
+        #region Texture
+
+        private void btnExtexture_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "DirectDraw Surface|*.dds";
+            save.FileName = fName.Text;
+            if(save.ShowDialog() == DialogResult.OK)
+            {
+                if (ckR.Checked && ckG.Checked && ckB.Checked && ckA.Checked)
+                {
+                    BinaryWriter wt = new BinaryWriter(File.Create(save.FileName));
+                    wt.Write(all);
+                    wt.Close();
+                }
+                else
+                {
+                    BinaryWriter wt = new BinaryWriter(File.Create(save.FileName));
+                    wt.Write(somecolor);
+                    wt.Close();
+                }
+            }
+        }
+
+        private void btnLdtexture_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog loadF = new OpenFileDialog();
+            loadF.Filter = "DirectDraw Surface|*.dds";
+            if (loadF.ShowDialog() == DialogResult.OK)
+            {
+                if (!string.IsNullOrEmpty(loadF.FileName))
+                {
+                    all = File.ReadAllBytes(loadF.FileName);
+                    TexDDS(all);
+                }
+            }
+        }
+
+        #endregion
+
+        #region ControlUI
+
+        private void IsRGBA()
+        {
+            ckA.Enabled = true;
+            ckR.Enabled = true;
+            ckG.Enabled = true;
+            ckB.Enabled = true;
+        }
+
+        private void NotRGBA()
+        {
+            ckA.Enabled = false;
+            ckR.Enabled = false;
+            ckG.Enabled = false;
+            ckB.Enabled = false;
+        }
+
+        private void NoneMap()
+        {
+            btnExtexture.Enabled = true;
+            btnLdtexture.Enabled = true;
+            //mapping
+            btnExmapping.Enabled = false;
+            btnLdmapping.Enabled = false;
+            btnUpdate.Enabled = false;
+            idBox.Enabled = false;
+            xBox.Enabled = false;
+            yBox.Enabled = false;
+            wBox.Enabled = false;
+            lBox.Enabled = false;
+            rBox.Enabled = false;
+            idBox.Text = "n/a";
+            xBox.Text = "0";
+            yBox.Text = "0";
+            wBox.Text = "0";
+            lBox.Text = "0";
+            rBox.Text = "0";
+            listID.Enabled = false;
+            listID.Items.Clear();
+        }
+
+        private void WithMap()
+        {
+            btnExtexture.Enabled = true;
+            btnLdtexture.Enabled = true;
+            //mapping
+            btnExmapping.Enabled = true;
+            btnLdmapping.Enabled = true;
+            btnUpdate.Enabled = true;
+            idBox.Enabled = true;
+            xBox.Enabled = true;
+            yBox.Enabled = true;
+            wBox.Enabled = true;
+            lBox.Enabled = true;
+            rBox.Enabled = true;
+            listID.Enabled = true;
+            listID.Items.Clear();
+        }
+
+        #endregion
+
+        private void listID_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = this.listID.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                long[] result_data = dic.Values.ElementAt(index);
+                idBox.Text = listID.Items[index].ToString();
+                xBox.Text = result_data[0].ToString();
+                yBox.Text = result_data[1].ToString();
+                wBox.Text = result_data[2].ToString();
+                lBox.Text = result_data[3].ToString();
+                rBox.Text = result_data[4].ToString();
+            }
         }
     }
 }

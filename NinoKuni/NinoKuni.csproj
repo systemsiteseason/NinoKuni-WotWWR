@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BBFC5D69-7609-49FB-8045-0020763497A6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>NinoKuni</RootNamespace>
     <AssemblyName>NinoKuni</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>

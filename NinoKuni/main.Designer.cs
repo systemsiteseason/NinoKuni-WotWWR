@@ -40,20 +40,44 @@
             this.panelBox = new System.Windows.Forms.FlowLayoutPanel();
             this.boxTexture = new System.Windows.Forms.PictureBox();
             this.gr1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lBox = new System.Windows.Forms.TextBox();
+            this.xBox = new System.Windows.Forms.TextBox();
+            this.wBox = new System.Windows.Forms.TextBox();
+            this.yBox = new System.Windows.Forms.TextBox();
+            this.rBox = new System.Windows.Forms.TextBox();
+            this.idBox = new System.Windows.Forms.TextBox();
+            this.btnLdtexture = new System.Windows.Forms.Button();
+            this.btnLdmapping = new System.Windows.Forms.Button();
+            this.btnExtexture = new System.Windows.Forms.Button();
+            this.btnExmapping = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.listID = new System.Windows.Forms.ListBox();
+            this.ckA = new System.Windows.Forms.CheckBox();
+            this.ckG = new System.Windows.Forms.CheckBox();
+            this.ckB = new System.Windows.Forms.CheckBox();
+            this.ckR = new System.Windows.Forms.CheckBox();
+            this.typeF = new System.Windows.Forms.Label();
+            this.offsetF = new System.Windows.Forms.Label();
+            this.len = new System.Windows.Forms.Label();
+            this.fName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gr2 = new System.Windows.Forms.GroupBox();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.zoomtrack = new System.Windows.Forms.TrackBar();
-            this.fName = new System.Windows.Forms.Label();
-            this.len = new System.Windows.Forms.Label();
-            this.offsetF = new System.Windows.Forms.Label();
-            this.typeF = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxTexture)).BeginInit();
             this.gr1.SuspendLayout();
+            this.gr2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomtrack)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,14 +128,15 @@
             // getTableCharacterToolStripMenuItem
             // 
             this.getTableCharacterToolStripMenuItem.Name = "getTableCharacterToolStripMenuItem";
-            this.getTableCharacterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.getTableCharacterToolStripMenuItem.Text = "Save new file";
+            this.getTableCharacterToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.getTableCharacterToolStripMenuItem.Text = "Save Archives";
             // 
             // aboutMeToolStripMenuItem
             // 
             this.aboutMeToolStripMenuItem.Name = "aboutMeToolStripMenuItem";
             this.aboutMeToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.aboutMeToolStripMenuItem.Text = "AboutMe";
+            this.aboutMeToolStripMenuItem.Click += new System.EventHandler(this.aboutMeToolStripMenuItem_Click);
             // 
             // panelBox
             // 
@@ -137,6 +162,28 @@
             // 
             // gr1
             // 
+            this.gr1.Controls.Add(this.label10);
+            this.gr1.Controls.Add(this.label9);
+            this.gr1.Controls.Add(this.label8);
+            this.gr1.Controls.Add(this.label7);
+            this.gr1.Controls.Add(this.label6);
+            this.gr1.Controls.Add(this.label5);
+            this.gr1.Controls.Add(this.lBox);
+            this.gr1.Controls.Add(this.xBox);
+            this.gr1.Controls.Add(this.wBox);
+            this.gr1.Controls.Add(this.yBox);
+            this.gr1.Controls.Add(this.rBox);
+            this.gr1.Controls.Add(this.idBox);
+            this.gr1.Controls.Add(this.btnLdtexture);
+            this.gr1.Controls.Add(this.btnLdmapping);
+            this.gr1.Controls.Add(this.btnExtexture);
+            this.gr1.Controls.Add(this.btnExmapping);
+            this.gr1.Controls.Add(this.btnUpdate);
+            this.gr1.Controls.Add(this.listID);
+            this.gr1.Controls.Add(this.ckA);
+            this.gr1.Controls.Add(this.ckG);
+            this.gr1.Controls.Add(this.ckB);
+            this.gr1.Controls.Add(this.ckR);
             this.gr1.Controls.Add(this.typeF);
             this.gr1.Controls.Add(this.offsetF);
             this.gr1.Controls.Add(this.len);
@@ -147,10 +194,223 @@
             this.gr1.Controls.Add(this.label1);
             this.gr1.Location = new System.Drawing.Point(12, 27);
             this.gr1.Name = "gr1";
-            this.gr1.Size = new System.Drawing.Size(208, 251);
+            this.gr1.Size = new System.Drawing.Size(208, 315);
             this.gr1.TabIndex = 2;
             this.gr1.TabStop = false;
             this.gr1.Text = "Properties";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(83, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "ID";
+            // 
+            // lBox
+            // 
+            this.lBox.Enabled = false;
+            this.lBox.Location = new System.Drawing.Point(171, 156);
+            this.lBox.Name = "lBox";
+            this.lBox.Size = new System.Drawing.Size(27, 20);
+            this.lBox.TabIndex = 25;
+            this.lBox.Text = "0";
+            // 
+            // xBox
+            // 
+            this.xBox.Enabled = false;
+            this.xBox.Location = new System.Drawing.Point(107, 156);
+            this.xBox.Name = "xBox";
+            this.xBox.Size = new System.Drawing.Size(26, 20);
+            this.xBox.TabIndex = 24;
+            this.xBox.Text = "0";
+            // 
+            // wBox
+            // 
+            this.wBox.Enabled = false;
+            this.wBox.Location = new System.Drawing.Point(171, 130);
+            this.wBox.Name = "wBox";
+            this.wBox.Size = new System.Drawing.Size(27, 20);
+            this.wBox.TabIndex = 23;
+            this.wBox.Text = "0";
+            // 
+            // yBox
+            // 
+            this.yBox.Enabled = false;
+            this.yBox.Location = new System.Drawing.Point(107, 182);
+            this.yBox.Name = "yBox";
+            this.yBox.Size = new System.Drawing.Size(26, 20);
+            this.yBox.TabIndex = 22;
+            this.yBox.Text = "0";
+            // 
+            // rBox
+            // 
+            this.rBox.Enabled = false;
+            this.rBox.Location = new System.Drawing.Point(171, 182);
+            this.rBox.Name = "rBox";
+            this.rBox.Size = new System.Drawing.Size(27, 20);
+            this.rBox.TabIndex = 21;
+            this.rBox.Text = "0";
+            // 
+            // idBox
+            // 
+            this.idBox.Enabled = false;
+            this.idBox.Location = new System.Drawing.Point(107, 130);
+            this.idBox.Name = "idBox";
+            this.idBox.Size = new System.Drawing.Size(26, 20);
+            this.idBox.TabIndex = 20;
+            this.idBox.Text = "n/a";
+            // 
+            // btnLdtexture
+            // 
+            this.btnLdtexture.Enabled = false;
+            this.btnLdtexture.Location = new System.Drawing.Point(108, 286);
+            this.btnLdtexture.Name = "btnLdtexture";
+            this.btnLdtexture.Size = new System.Drawing.Size(94, 23);
+            this.btnLdtexture.TabIndex = 19;
+            this.btnLdtexture.Text = "Load Texture";
+            this.btnLdtexture.UseVisualStyleBackColor = true;
+            this.btnLdtexture.Click += new System.EventHandler(this.btnLdtexture_Click);
+            // 
+            // btnLdmapping
+            // 
+            this.btnLdmapping.Enabled = false;
+            this.btnLdmapping.Location = new System.Drawing.Point(9, 286);
+            this.btnLdmapping.Name = "btnLdmapping";
+            this.btnLdmapping.Size = new System.Drawing.Size(94, 23);
+            this.btnLdmapping.TabIndex = 18;
+            this.btnLdmapping.Text = "Load Mapping";
+            this.btnLdmapping.UseVisualStyleBackColor = true;
+            // 
+            // btnExtexture
+            // 
+            this.btnExtexture.Enabled = false;
+            this.btnExtexture.Location = new System.Drawing.Point(108, 257);
+            this.btnExtexture.Name = "btnExtexture";
+            this.btnExtexture.Size = new System.Drawing.Size(94, 23);
+            this.btnExtexture.TabIndex = 17;
+            this.btnExtexture.Text = "Export Texture";
+            this.btnExtexture.UseVisualStyleBackColor = true;
+            this.btnExtexture.Click += new System.EventHandler(this.btnExtexture_Click);
+            // 
+            // btnExmapping
+            // 
+            this.btnExmapping.Enabled = false;
+            this.btnExmapping.Location = new System.Drawing.Point(9, 258);
+            this.btnExmapping.Name = "btnExmapping";
+            this.btnExmapping.Size = new System.Drawing.Size(93, 23);
+            this.btnExmapping.TabIndex = 16;
+            this.btnExmapping.Text = "Export Mapping";
+            this.btnExmapping.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.Location = new System.Drawing.Point(123, 210);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(58, 22);
+            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // listID
+            // 
+            this.listID.Enabled = false;
+            this.listID.FormattingEnabled = true;
+            this.listID.Location = new System.Drawing.Point(9, 131);
+            this.listID.Name = "listID";
+            this.listID.Size = new System.Drawing.Size(61, 121);
+            this.listID.TabIndex = 12;
+            this.listID.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listID_MouseDoubleClick);
+            // 
+            // ckA
+            // 
+            this.ckA.AutoSize = true;
+            this.ckA.Checked = true;
+            this.ckA.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckA.Enabled = false;
+            this.ckA.Location = new System.Drawing.Point(127, 101);
+            this.ckA.Name = "ckA";
+            this.ckA.Size = new System.Drawing.Size(33, 17);
+            this.ckA.TabIndex = 11;
+            this.ckA.Text = "A";
+            this.ckA.UseVisualStyleBackColor = true;
+            this.ckA.CheckedChanged += new System.EventHandler(this.ckA_CheckedChanged);
+            // 
+            // ckG
+            // 
+            this.ckG.AutoSize = true;
+            this.ckG.Checked = true;
+            this.ckG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckG.Enabled = false;
+            this.ckG.Location = new System.Drawing.Point(48, 101);
+            this.ckG.Name = "ckG";
+            this.ckG.Size = new System.Drawing.Size(34, 17);
+            this.ckG.TabIndex = 10;
+            this.ckG.Text = "G";
+            this.ckG.UseVisualStyleBackColor = true;
+            this.ckG.CheckedChanged += new System.EventHandler(this.ckG_CheckedChanged);
+            // 
+            // ckB
+            // 
+            this.ckB.AutoSize = true;
+            this.ckB.Checked = true;
+            this.ckB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckB.Enabled = false;
+            this.ckB.Location = new System.Drawing.Point(88, 101);
+            this.ckB.Name = "ckB";
+            this.ckB.Size = new System.Drawing.Size(33, 17);
+            this.ckB.TabIndex = 9;
+            this.ckB.Text = "B";
+            this.ckB.UseVisualStyleBackColor = true;
+            this.ckB.CheckedChanged += new System.EventHandler(this.ckB_CheckedChanged);
+            // 
+            // ckR
+            // 
+            this.ckR.AutoSize = true;
+            this.ckR.Checked = true;
+            this.ckR.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckR.Enabled = false;
+            this.ckR.Location = new System.Drawing.Point(9, 101);
+            this.ckR.Name = "ckR";
+            this.ckR.Size = new System.Drawing.Size(34, 17);
+            this.ckR.TabIndex = 8;
+            this.ckR.Text = "R";
+            this.ckR.UseVisualStyleBackColor = true;
+            this.ckR.CheckedChanged += new System.EventHandler(this.ckR_CheckedChanged);
+            // 
+            // typeF
+            // 
+            this.typeF.AutoSize = true;
+            this.typeF.Location = new System.Drawing.Point(79, 77);
+            this.typeF.Name = "typeF";
+            this.typeF.Size = new System.Drawing.Size(0, 13);
+            this.typeF.TabIndex = 7;
+            // 
+            // offsetF
+            // 
+            this.offsetF.AutoSize = true;
+            this.offsetF.Location = new System.Drawing.Point(79, 61);
+            this.offsetF.Name = "offsetF";
+            this.offsetF.Size = new System.Drawing.Size(0, 13);
+            this.offsetF.TabIndex = 6;
+            // 
+            // len
+            // 
+            this.len.AutoSize = true;
+            this.len.Location = new System.Drawing.Point(79, 43);
+            this.len.Name = "len";
+            this.len.Size = new System.Drawing.Size(0, 13);
+            this.len.TabIndex = 5;
+            // 
+            // fName
+            // 
+            this.fName.AutoSize = true;
+            this.fName.Location = new System.Drawing.Point(79, 24);
+            this.fName.Name = "fName";
+            this.fName.Size = new System.Drawing.Size(0, 13);
+            this.fName.TabIndex = 4;
             // 
             // label4
             // 
@@ -190,12 +450,20 @@
             // 
             // gr2
             // 
-            this.gr2.Location = new System.Drawing.Point(12, 284);
+            this.gr2.Controls.Add(this.treeView1);
+            this.gr2.Location = new System.Drawing.Point(12, 348);
             this.gr2.Name = "gr2";
-            this.gr2.Size = new System.Drawing.Size(208, 285);
+            this.gr2.Size = new System.Drawing.Size(208, 221);
             this.gr2.TabIndex = 3;
             this.gr2.TabStop = false;
             this.gr2.Text = "Data";
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(5, 19);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(197, 196);
+            this.treeView1.TabIndex = 0;
             // 
             // zoomtrack
             // 
@@ -207,39 +475,53 @@
             this.zoomtrack.Size = new System.Drawing.Size(338, 45);
             this.zoomtrack.TabIndex = 4;
             this.zoomtrack.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.zoomtrack.Visible = false;
             this.zoomtrack.Scroll += new System.EventHandler(this.zoomtrack_Scroll);
             // 
-            // fName
+            // label6
             // 
-            this.fName.AutoSize = true;
-            this.fName.Location = new System.Drawing.Point(79, 24);
-            this.fName.Name = "fName";
-            this.fName.Size = new System.Drawing.Size(0, 13);
-            this.fName.TabIndex = 4;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(88, 159);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(14, 13);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "X";
             // 
-            // len
+            // label7
             // 
-            this.len.AutoSize = true;
-            this.len.Location = new System.Drawing.Point(79, 43);
-            this.len.Name = "len";
-            this.len.Size = new System.Drawing.Size(0, 13);
-            this.len.TabIndex = 5;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(88, 185);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Y";
             // 
-            // offsetF
+            // label8
             // 
-            this.offsetF.AutoSize = true;
-            this.offsetF.Location = new System.Drawing.Point(79, 61);
-            this.offsetF.Name = "offsetF";
-            this.offsetF.Size = new System.Drawing.Size(0, 13);
-            this.offsetF.TabIndex = 6;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(147, 133);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(18, 13);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "W";
             // 
-            // typeF
+            // label9
             // 
-            this.typeF.AutoSize = true;
-            this.typeF.Location = new System.Drawing.Point(79, 77);
-            this.typeF.Name = "typeF";
-            this.typeF.Size = new System.Drawing.Size(0, 13);
-            this.typeF.TabIndex = 7;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(152, 159);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "L";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(150, 189);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 13);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "R";
             // 
             // main
             // 
@@ -263,6 +545,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.boxTexture)).EndInit();
             this.gr1.ResumeLayout(false);
             this.gr1.PerformLayout();
+            this.gr2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.zoomtrack)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -292,6 +575,29 @@
         private System.Windows.Forms.Label offsetF;
         private System.Windows.Forms.Label len;
         private System.Windows.Forms.Label fName;
+        private System.Windows.Forms.ListBox listID;
+        private System.Windows.Forms.CheckBox ckA;
+        private System.Windows.Forms.CheckBox ckG;
+        private System.Windows.Forms.CheckBox ckB;
+        private System.Windows.Forms.CheckBox ckR;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox lBox;
+        private System.Windows.Forms.TextBox xBox;
+        private System.Windows.Forms.TextBox wBox;
+        private System.Windows.Forms.TextBox yBox;
+        private System.Windows.Forms.TextBox rBox;
+        private System.Windows.Forms.TextBox idBox;
+        private System.Windows.Forms.Button btnLdtexture;
+        private System.Windows.Forms.Button btnLdmapping;
+        private System.Windows.Forms.Button btnExtexture;
+        private System.Windows.Forms.Button btnExmapping;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }
 

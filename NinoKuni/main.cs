@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -16,7 +17,7 @@ namespace NinoKuni
 {
     public partial class main : Form
     {
-
+        float zoom = 1f;
         private static GCHandle handle;
         Image imgOriginal;
 
@@ -24,8 +25,12 @@ namespace NinoKuni
 
         Rectangle rect;
 
-        Point LocationXlYt = new Point(409, 78);
-        Point LocationXrYb = new Point(436, 156);
+        Point LocationXlYt;
+        Point LocationXrYb;
+        Point AdvXY_L;
+        Point AdvX1Y1_L;
+        Point AdvXY_R;
+        Point AdvX1Y1_R;
 
         public byte[] all = null;
         public byte[] somecolor = null;
@@ -236,10 +241,10 @@ namespace NinoKuni
 
         private void zoomtrack_Scroll(object sender, EventArgs e)
         {
-            if (zoomtrack.Value > 0)
-            {
-                boxTexture.Image = Zoom(imgOriginal, new Size(zoomtrack.Value, zoomtrack.Value));
-            }
+            boxTexture.Image = Zoom(imgOriginal, new Size(zoomtrack.Value, zoomtrack.Value));
+            zoom = 1f + zoomtrack.Value / 100f;
+            boxTexture.Invalidate();
+            Debug.WriteLine(zoomtrack.Value);
         }
 
         Image Zoom(Image img, Size size)
@@ -275,10 +280,12 @@ namespace NinoKuni
 
         private void boxTexture_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.ScaleTransform(zoom, zoom);
             if(rect != null)
             {
-                e.Graphics.DrawRectangle(Pens.White, GetRect());
-                //e.Graphics.DrawLine(P)
+                e.Graphics.DrawRectangle(Pens.White, GetRect());//w and h
+                e.Graphics.DrawLine(Pens.Green, AdvXY_L, AdvX1Y1_L);// left
+                e.Graphics.DrawLine(Pens.Blue, AdvXY_R, AdvX1Y1_R);// right
             }
         }
 
@@ -417,6 +424,10 @@ namespace NinoKuni
             ckR.Enabled = true;
             ckG.Enabled = true;
             ckB.Enabled = true;
+            ckA.Checked = true;
+            ckR.Checked = true;
+            ckG.Checked = true;
+            ckB.Checked = true;
         }
 
         private void NotRGBA()
@@ -449,6 +460,7 @@ namespace NinoKuni
             rBox.Text = "0";
             listID.Enabled = false;
             listID.Items.Clear();
+            dic.Clear();
         }
 
         private void WithMap()
@@ -465,8 +477,15 @@ namespace NinoKuni
             wBox.Enabled = true;
             lBox.Enabled = true;
             rBox.Enabled = true;
+            idBox.Text = "n/a";
+            xBox.Text = "0";
+            yBox.Text = "0";
+            wBox.Text = "0";
+            lBox.Text = "0";
+            rBox.Text = "0";
             listID.Enabled = true;
             listID.Items.Clear();
+            dic.Clear();
         }
 
         #endregion
@@ -483,6 +502,26 @@ namespace NinoKuni
                 wBox.Text = result_data[2].ToString();
                 lBox.Text = result_data[3].ToString();
                 rBox.Text = result_data[4].ToString();
+                //RenderMap(result_data[0], result_data[1], result_data[0] + result_data[2], result_data[1]);
+            }
+        }
+
+        public void RenderMap(long Xl, long Yt, long Xr, long Yb)
+        {
+            LocationXlYt = new Point((int)Xl, (int)Yt);
+            LocationXrYb = new Point((int)Xr, (int)Yb + 78);
+            AdvXY_L = new Point((int)Xl - (int)long.Parse(lBox.Text), (int)Yt);
+            AdvX1Y1_L = new Point((int)Xl - (int)long.Parse(lBox.Text), (int)Yt + 95);
+            AdvXY_R = new Point((int)Xl + (int)long.Parse(rBox.Text), (int)Yt);
+            AdvX1Y1_R = new Point((int)Xl + (int)long.Parse(rBox.Text), (int)Yt + 95);
+            Refresh();
+        }
+
+        private void xBox_TextChanged(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrEmpty(xBox.Text) && !string.IsNullOrEmpty(yBox.Text) && !string.IsNullOrEmpty(wBox.Text) && !string.IsNullOrEmpty(lBox.Text) && !string.IsNullOrEmpty(rBox.Text))
+            {
+                RenderMap(long.Parse(xBox.Text), long.Parse(yBox.Text), long.Parse(xBox.Text) + long.Parse(wBox.Text), long.Parse(yBox.Text));
             }
         }
     }

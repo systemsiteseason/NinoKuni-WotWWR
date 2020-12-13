@@ -40,6 +40,11 @@
             this.panelBox = new System.Windows.Forms.FlowLayoutPanel();
             this.boxTexture = new System.Windows.Forms.PictureBox();
             this.gr1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lBox = new System.Windows.Forms.TextBox();
             this.xBox = new System.Windows.Forms.TextBox();
@@ -68,11 +73,6 @@
             this.gr2 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.zoomtrack = new System.Windows.Forms.TrackBar();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxTexture)).BeginInit();
@@ -105,14 +105,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -199,6 +199,51 @@
             this.gr1.TabStop = false;
             this.gr1.Text = "Properties";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(150, 189);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 13);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "R";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(152, 159);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "L";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(147, 133);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(18, 13);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "W";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(88, 185);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Y";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(88, 159);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(14, 13);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "X";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -216,6 +261,7 @@
             this.lBox.Size = new System.Drawing.Size(27, 20);
             this.lBox.TabIndex = 25;
             this.lBox.Text = "0";
+            this.lBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
             // 
             // xBox
             // 
@@ -225,6 +271,7 @@
             this.xBox.Size = new System.Drawing.Size(26, 20);
             this.xBox.TabIndex = 24;
             this.xBox.Text = "0";
+            this.xBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
             // 
             // wBox
             // 
@@ -234,6 +281,7 @@
             this.wBox.Size = new System.Drawing.Size(27, 20);
             this.wBox.TabIndex = 23;
             this.wBox.Text = "0";
+            this.wBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
             // 
             // yBox
             // 
@@ -243,6 +291,7 @@
             this.yBox.Size = new System.Drawing.Size(26, 20);
             this.yBox.TabIndex = 22;
             this.yBox.Text = "0";
+            this.yBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
             // 
             // rBox
             // 
@@ -252,6 +301,7 @@
             this.rBox.Size = new System.Drawing.Size(27, 20);
             this.rBox.TabIndex = 21;
             this.rBox.Text = "0";
+            this.rBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
             // 
             // idBox
             // 
@@ -468,60 +518,13 @@
             // zoomtrack
             // 
             this.zoomtrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.zoomtrack.Enabled = false;
             this.zoomtrack.Location = new System.Drawing.Point(682, 0);
             this.zoomtrack.Maximum = 500;
             this.zoomtrack.Name = "zoomtrack";
             this.zoomtrack.Size = new System.Drawing.Size(338, 45);
             this.zoomtrack.TabIndex = 4;
             this.zoomtrack.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.zoomtrack.Visible = false;
             this.zoomtrack.Scroll += new System.EventHandler(this.zoomtrack_Scroll);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(88, 159);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 13);
-            this.label6.TabIndex = 27;
-            this.label6.Text = "X";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(88, 185);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(14, 13);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "Y";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(147, 133);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 13);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "W";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(152, 159);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(13, 13);
-            this.label9.TabIndex = 30;
-            this.label9.Text = "L";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(150, 189);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 13);
-            this.label10.TabIndex = 31;
-            this.label10.Text = "R";
             // 
             // main
             // 

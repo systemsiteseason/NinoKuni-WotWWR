@@ -73,6 +73,7 @@
             this.gr2 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.zoomtrack = new System.Windows.Forms.TrackBar();
+            this.ckhA = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxTexture)).BeginInit();
@@ -105,14 +106,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -128,8 +129,9 @@
             // getTableCharacterToolStripMenuItem
             // 
             this.getTableCharacterToolStripMenuItem.Name = "getTableCharacterToolStripMenuItem";
-            this.getTableCharacterToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.getTableCharacterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.getTableCharacterToolStripMenuItem.Text = "Save Archives";
+            this.getTableCharacterToolStripMenuItem.Click += new System.EventHandler(this.getTableCharacterToolStripMenuItem_Click);
             // 
             // aboutMeToolStripMenuItem
             // 
@@ -162,6 +164,7 @@
             // 
             // gr1
             // 
+            this.gr1.Controls.Add(this.ckhA);
             this.gr1.Controls.Add(this.label10);
             this.gr1.Controls.Add(this.label9);
             this.gr1.Controls.Add(this.label8);
@@ -262,6 +265,7 @@
             this.lBox.TabIndex = 25;
             this.lBox.Text = "0";
             this.lBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
+            this.lBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.xBox_KeyPress);
             // 
             // xBox
             // 
@@ -272,6 +276,7 @@
             this.xBox.TabIndex = 24;
             this.xBox.Text = "0";
             this.xBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
+            this.xBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.xBox_KeyPress);
             // 
             // wBox
             // 
@@ -282,6 +287,7 @@
             this.wBox.TabIndex = 23;
             this.wBox.Text = "0";
             this.wBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
+            this.wBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.xBox_KeyPress);
             // 
             // yBox
             // 
@@ -292,6 +298,7 @@
             this.yBox.TabIndex = 22;
             this.yBox.Text = "0";
             this.yBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
+            this.yBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.xBox_KeyPress);
             // 
             // rBox
             // 
@@ -302,6 +309,7 @@
             this.rBox.TabIndex = 21;
             this.rBox.Text = "0";
             this.rBox.TextChanged += new System.EventHandler(this.xBox_TextChanged);
+            this.rBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.xBox_KeyPress);
             // 
             // idBox
             // 
@@ -332,6 +340,7 @@
             this.btnLdmapping.TabIndex = 18;
             this.btnLdmapping.Text = "Load Mapping";
             this.btnLdmapping.UseVisualStyleBackColor = true;
+            this.btnLdmapping.Click += new System.EventHandler(this.btnLdmapping_Click);
             // 
             // btnExtexture
             // 
@@ -353,6 +362,7 @@
             this.btnExmapping.TabIndex = 16;
             this.btnExmapping.Text = "Export Mapping";
             this.btnExmapping.UseVisualStyleBackColor = true;
+            this.btnExmapping.Click += new System.EventHandler(this.btnExmapping_Click);
             // 
             // btnUpdate
             // 
@@ -363,6 +373,7 @@
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // listID
             // 
@@ -372,7 +383,7 @@
             this.listID.Name = "listID";
             this.listID.Size = new System.Drawing.Size(61, 121);
             this.listID.TabIndex = 12;
-            this.listID.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listID_MouseDoubleClick);
+            this.listID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listID_MouseClick);
             // 
             // ckA
             // 
@@ -386,7 +397,7 @@
             this.ckA.TabIndex = 11;
             this.ckA.Text = "A";
             this.ckA.UseVisualStyleBackColor = true;
-            this.ckA.CheckedChanged += new System.EventHandler(this.ckA_CheckedChanged);
+            this.ckA.CheckedChanged += new System.EventHandler(this.ckR_CheckedChanged);
             // 
             // ckG
             // 
@@ -400,7 +411,7 @@
             this.ckG.TabIndex = 10;
             this.ckG.Text = "G";
             this.ckG.UseVisualStyleBackColor = true;
-            this.ckG.CheckedChanged += new System.EventHandler(this.ckG_CheckedChanged);
+            this.ckG.CheckedChanged += new System.EventHandler(this.ckR_CheckedChanged);
             // 
             // ckB
             // 
@@ -414,7 +425,7 @@
             this.ckB.TabIndex = 9;
             this.ckB.Text = "B";
             this.ckB.UseVisualStyleBackColor = true;
-            this.ckB.CheckedChanged += new System.EventHandler(this.ckB_CheckedChanged);
+            this.ckB.CheckedChanged += new System.EventHandler(this.ckR_CheckedChanged);
             // 
             // ckR
             // 
@@ -518,13 +529,26 @@
             // zoomtrack
             // 
             this.zoomtrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.zoomtrack.Enabled = false;
             this.zoomtrack.Location = new System.Drawing.Point(682, 0);
-            this.zoomtrack.Maximum = 500;
+            this.zoomtrack.Maximum = 200;
             this.zoomtrack.Name = "zoomtrack";
             this.zoomtrack.Size = new System.Drawing.Size(338, 45);
             this.zoomtrack.TabIndex = 4;
             this.zoomtrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.zoomtrack.Scroll += new System.EventHandler(this.zoomtrack_Scroll);
+            // 
+            // ckhA
+            // 
+            this.ckhA.AutoSize = true;
+            this.ckhA.Enabled = false;
+            this.ckhA.Location = new System.Drawing.Point(166, 101);
+            this.ckhA.Name = "ckhA";
+            this.ckhA.Size = new System.Drawing.Size(39, 17);
+            this.ckhA.TabIndex = 32;
+            this.ckhA.Text = "hA";
+            this.ckhA.UseVisualStyleBackColor = true;
+            this.ckhA.CheckedChanged += new System.EventHandler(this.ckR_CheckedChanged);
             // 
             // main
             // 
@@ -601,6 +625,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox ckhA;
     }
 }
 

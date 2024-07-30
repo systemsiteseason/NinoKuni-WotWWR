@@ -360,7 +360,7 @@ namespace NinoKuni
                 zoom = 1f;
                 TexDDS(all);
             }
-            else if ((!ckR.Checked && !ckG.Checked && !ckB.Checked && ckA.Checked) || (!ckR.Checked && !ckG.Checked && !ckB.Checked && !ckA.Checked))
+            else if (!ckR.Checked && !ckG.Checked && !ckB.Checked && !ckA.Checked)
             {
                 MessageBox.Show("Please checked R or G or B channel, no data result!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -527,14 +527,17 @@ namespace NinoKuni
             {
                 StreamWriter wtmap = new StreamWriter(sv.FileName);
                 wtmap.WriteLine("var=0");
+                string ch = "";
                 foreach (var pair in dic)
                 {
                     byte[] showchar = Decore(pair.Key);
                     Array.Reverse(showchar);
                     string character = Encoding.UTF8.GetString(showchar);
                     long[] allp = pair.Value;
+                    ch += character;
                     wtmap.WriteLine("id=" + Convert.ToInt32(character[0])+ " x=" + allp[0] + " y=" + allp[1] + " width="+allp[2] + " padding_left=" + allp[3] + " padding_right=" + allp[4]);
                 }
+                wtmap.WriteLine("var=" + ch);
                 wtmap.Close();
             }
         }

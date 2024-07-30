@@ -40,6 +40,7 @@
             this.panelBox = new System.Windows.Forms.FlowLayoutPanel();
             this.boxTexture = new System.Windows.Forms.PictureBox();
             this.gr1 = new System.Windows.Forms.GroupBox();
+            this.ckhA = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@
             this.gr2 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.zoomtrack = new System.Windows.Forms.TrackBar();
-            this.ckhA = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxTexture)).BeginInit();
@@ -106,14 +106,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -129,7 +129,7 @@
             // getTableCharacterToolStripMenuItem
             // 
             this.getTableCharacterToolStripMenuItem.Name = "getTableCharacterToolStripMenuItem";
-            this.getTableCharacterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.getTableCharacterToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.getTableCharacterToolStripMenuItem.Text = "Save Archives";
             this.getTableCharacterToolStripMenuItem.Click += new System.EventHandler(this.getTableCharacterToolStripMenuItem_Click);
             // 
@@ -202,10 +202,22 @@
             this.gr1.TabStop = false;
             this.gr1.Text = "Properties";
             // 
+            // ckhA
+            // 
+            this.ckhA.AutoSize = true;
+            this.ckhA.Enabled = false;
+            this.ckhA.Location = new System.Drawing.Point(166, 101);
+            this.ckhA.Name = "ckhA";
+            this.ckhA.Size = new System.Drawing.Size(39, 17);
+            this.ckhA.TabIndex = 32;
+            this.ckhA.Text = "hA";
+            this.ckhA.UseVisualStyleBackColor = true;
+            this.ckhA.CheckedChanged += new System.EventHandler(this.ckR_CheckedChanged);
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(150, 189);
+            this.label10.Location = new System.Drawing.Point(150, 209);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(15, 13);
             this.label10.TabIndex = 31;
@@ -214,7 +226,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(152, 159);
+            this.label9.Location = new System.Drawing.Point(152, 179);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(13, 13);
             this.label9.TabIndex = 30;
@@ -223,7 +235,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(147, 133);
+            this.label8.Location = new System.Drawing.Point(147, 153);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(18, 13);
             this.label8.TabIndex = 29;
@@ -232,7 +244,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(88, 185);
+            this.label7.Location = new System.Drawing.Point(88, 205);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(14, 13);
             this.label7.TabIndex = 28;
@@ -241,7 +253,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(88, 159);
+            this.label6.Location = new System.Drawing.Point(88, 179);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(14, 13);
             this.label6.TabIndex = 27;
@@ -250,7 +262,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(83, 133);
+            this.label5.Location = new System.Drawing.Point(85, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(18, 13);
             this.label5.TabIndex = 26;
@@ -259,7 +271,7 @@
             // lBox
             // 
             this.lBox.Enabled = false;
-            this.lBox.Location = new System.Drawing.Point(171, 156);
+            this.lBox.Location = new System.Drawing.Point(171, 176);
             this.lBox.Name = "lBox";
             this.lBox.Size = new System.Drawing.Size(27, 20);
             this.lBox.TabIndex = 25;
@@ -270,7 +282,7 @@
             // xBox
             // 
             this.xBox.Enabled = false;
-            this.xBox.Location = new System.Drawing.Point(107, 156);
+            this.xBox.Location = new System.Drawing.Point(107, 176);
             this.xBox.Name = "xBox";
             this.xBox.Size = new System.Drawing.Size(26, 20);
             this.xBox.TabIndex = 24;
@@ -281,7 +293,7 @@
             // wBox
             // 
             this.wBox.Enabled = false;
-            this.wBox.Location = new System.Drawing.Point(171, 130);
+            this.wBox.Location = new System.Drawing.Point(171, 150);
             this.wBox.Name = "wBox";
             this.wBox.Size = new System.Drawing.Size(27, 20);
             this.wBox.TabIndex = 23;
@@ -292,7 +304,7 @@
             // yBox
             // 
             this.yBox.Enabled = false;
-            this.yBox.Location = new System.Drawing.Point(107, 182);
+            this.yBox.Location = new System.Drawing.Point(107, 202);
             this.yBox.Name = "yBox";
             this.yBox.Size = new System.Drawing.Size(26, 20);
             this.yBox.TabIndex = 22;
@@ -303,7 +315,7 @@
             // rBox
             // 
             this.rBox.Enabled = false;
-            this.rBox.Location = new System.Drawing.Point(171, 182);
+            this.rBox.Location = new System.Drawing.Point(171, 202);
             this.rBox.Name = "rBox";
             this.rBox.Size = new System.Drawing.Size(27, 20);
             this.rBox.TabIndex = 21;
@@ -314,9 +326,10 @@
             // idBox
             // 
             this.idBox.Enabled = false;
+            this.idBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.idBox.Location = new System.Drawing.Point(107, 130);
             this.idBox.Name = "idBox";
-            this.idBox.Size = new System.Drawing.Size(26, 20);
+            this.idBox.Size = new System.Drawing.Size(34, 29);
             this.idBox.TabIndex = 20;
             this.idBox.Text = "n/a";
             // 
@@ -367,7 +380,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Enabled = false;
-            this.btnUpdate.Location = new System.Drawing.Point(123, 210);
+            this.btnUpdate.Location = new System.Drawing.Point(123, 230);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(58, 22);
             this.btnUpdate.TabIndex = 14;
@@ -378,10 +391,12 @@
             // listID
             // 
             this.listID.Enabled = false;
+            this.listID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listID.FormattingEnabled = true;
+            this.listID.ItemHeight = 24;
             this.listID.Location = new System.Drawing.Point(9, 131);
             this.listID.Name = "listID";
-            this.listID.Size = new System.Drawing.Size(61, 121);
+            this.listID.Size = new System.Drawing.Size(61, 100);
             this.listID.TabIndex = 12;
             this.listID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listID_MouseClick);
             // 
@@ -537,18 +552,6 @@
             this.zoomtrack.TabIndex = 4;
             this.zoomtrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.zoomtrack.Scroll += new System.EventHandler(this.zoomtrack_Scroll);
-            // 
-            // ckhA
-            // 
-            this.ckhA.AutoSize = true;
-            this.ckhA.Enabled = false;
-            this.ckhA.Location = new System.Drawing.Point(166, 101);
-            this.ckhA.Name = "ckhA";
-            this.ckhA.Size = new System.Drawing.Size(39, 17);
-            this.ckhA.TabIndex = 32;
-            this.ckhA.Text = "hA";
-            this.ckhA.UseVisualStyleBackColor = true;
-            this.ckhA.CheckedChanged += new System.EventHandler(this.ckR_CheckedChanged);
             // 
             // main
             // 
